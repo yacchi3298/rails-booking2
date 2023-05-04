@@ -1,0 +1,46 @@
+<div class="FormWrapper">
+    <section class="FormContainer">
+        <h2>予約内容の確認</h2>
+
+        <%= form_with model:@reservation ,method: :post, html: {class:"Form ReservationConfirm"} do |f| %>
+            <%= f.hidden_field :user_id , value: @user_id%>
+            <%= f.hidden_field :room_id , value: @reservation.room_id%>
+            <%= f.hidden_field :checkin ,value: @reservation.checkin%>
+            <%= f.hidden_field :checkout ,value:  @reservation.checkout%>
+            <%= f.hidden_field :Number_of_people ,value: @reservation.Number_of_people%>
+
+            <div class="ReservationConfirm__value-group">
+                <p class="ReservationConfirm__label"><%= f.label :checkin, "チェックイン" %></p>
+                <p class="ReservationConfirm__value"><%=l @reservation.checkin.to_date %></p>
+            </div>
+
+            <div class="ReservationConfirm__value-group">
+                <p class="ReservationConfirm__label">チェックアウト</p>
+                <p class="ReservationConfirm__value"><%=l @reservation.checkout.to_date %></p>
+            </div>
+
+            <div class="ReservationConfirm__value-group">
+                <p class="ReservationConfirm__label">泊数</p>
+                <p class="ReservationConfirm__value"><%= @days %>泊</p>
+            </div>
+
+            <div class="ReservationConfirm__value-group">
+                <p class="ReservationConfirm__label">人数</p>
+                <p class="ReservationConfirm__value"><%= @reservation.Number_of_people %>人</p>
+            </div>
+
+            <div class="ReservationConfirm__value-group">
+                <p class="ReservationConfirm__label">お支払い金額</p>
+                <p class="ReservationConfirm__value ReservationConfirm__value--price">¥<%= @price %></p>
+            </div>
+
+            <p class="ReservationConfirm__description">
+                上記内容で正しければ「確定」ボタンを押してください。
+            </p>
+
+            <%= f.submit:予約を確定 ,class:"btn ReservationConfirm__button ReservationConfirm__button--submit" %>
+        <% end %>
+        <%= link_to "戻る", 'javascript:history.back()' ,class:"btn ReservationConfirm__button ReservationConfirm__button--cancel"%>
+
+    </section>
+</div>

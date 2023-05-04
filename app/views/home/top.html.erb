@@ -1,0 +1,11 @@
+<div class="firstview">
+    <section class="main-container">
+        <h1 class="firstview-title">旅をしよう</h1>
+        <div class="FirstViewSearch">
+            <%= search_form_for @q do |f| %>
+                <%= f.search_field :address_cont , placeholder: 'エリア名', class:"form-control FirstViewSearch__input"%>
+                <%= f.submit :検索 ,class:"btn FirstViewSearch__button"%>
+            <% end %>
+        </div>
+    </section>
+</div>

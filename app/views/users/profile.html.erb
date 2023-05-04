@@ -1,0 +1,36 @@
+<section class="container UserSection">
+    <h2>設定</h2>
+    <div class="UserContainer">
+        <ul class="SideNavigation">
+            <li class="SideNavigation__item "><%= link_to "アカウント", user_path(current_user) %>  </li>
+            <li class="SideNavigation__item active"><%= link_to "プロフィール", profile_user_path(current_user) %> </li>
+        </ul>
+        <div class="AccountInformation">
+            <div class="AccountInformation__header">
+                <h3>プロフィール</h3>
+                <%= link_to "編集",profile_edit_user_path(current_user),class: "AccountInformation__link" %>
+            </div>
+
+            <div class="AccountInformation__input-group">
+                <label class="AccountInformation__label" for="image">アイコン画像</label>
+                <p class="AccountInformation__value AccountInformation__value--image">
+                    <% if @user.icon? %>
+                        <%= image_tag @user.icon.url , class: "user-icon"%>
+                    <% else %>
+                        <%= image_tag("default-icon.png") %>
+                    <% end %>
+                </p>
+            </div>
+
+            <div class="AccountInformation__input-group">
+                <label class="AccountInformation__label" for="name">名前</label>
+                <p class="AccountInformation__value"><%= @user.name %></p>
+            </div>
+
+            <div class="AccountInformation__input-group">
+                <label class="AccountInformation__label" for="introduction">自己紹介</label>
+                <p class="AccountInformation__value"><%= @user.profile %></p>
+            </div>
+        </div>
+    </div>
+</section>

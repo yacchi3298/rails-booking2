@@ -1,0 +1,25 @@
+<section class="container UserSection">
+    <h2>設定</h2>
+    <div class="UserContainer">
+        <ul class="SideNavigation">
+            <li class="SideNavigation__item active"><%= link_to "アカウント", user_path(current_user) %>  </li>
+            <li class="SideNavigation__item "><%= link_to "プロフィール", profile_user_path(current_user) %> </li>
+        </ul>
+        <div class="AccountInformation">
+            <div class="AccountInformation__header">
+                <h3>アカウント</h3>
+                <%= link_to "編集",edit_user_registration_path,class: "AccountInformation__link" %>
+            </div>
+
+            <div class="AccountInformation__input-group">
+                <label class="AccountInformation__label" for="email">メールアドレス</label>
+                <p class="AccountInformation__value"><%= @user.email %></p>
+            </div>
+
+            <div class="AccountInformation__input-group">
+                <label class="AccountInformation__label" for="password">パスワード</label>
+                <p class="AccountInformation__value">*********</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,71 @@
+
+<section class="container UserSection">
+    <h2>設定</h2>
+    <div class="UserContainer">
+        <ul class="SideNavigation">
+            <li class="SideNavigation__item active"><%= link_to "アカウント", user_path(current_user) %>  </li>
+            <li class="SideNavigation__item "><%= link_to "プロフィール", profile_user_path(current_user) %> </li>
+        </ul>
+        <div class="AccountInformation">
+            <div class="AccountInformation__header">
+                <h3>アカウント</h3>
+            </div>
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="mb-4 AccountInformation__input-group">
+                <%= f.label :メールアドレス ,class:"AccountInformation__label"%><br />
+                <div class="AccountInformation__input-wrapper">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"AccountInformation__input" %>
+                </div>
+              </div>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+              <div class="mb-4 AccountInformation__input-group">
+                <label class="AccountInformation__label" for="password_confirmation">
+                  <span>変更後パスワード</span><br>
+                  <span class="AccountInformation__label--caption">※変更する場合のみ</span>
+                </label>
+                <div class="AccountInformation__input-wrapper">
+                  <%= f.password_field :password, autocomplete: "new-password" ,class:"AccountInformation__input" , placeholder:"変更後パスワードを入力"%>
+                    <% if @minimum_password_length %>
+                      <br />
+                      <em><%= @minimum_password_length %> 文字以上</em>
+                    <% end %>
+                </div>
+              </div>
+
+              <div class="mb-4 AccountInformation__input-group">
+                <label class="AccountInformation__label" for="password_confirmation">
+                  <span>確認用パスワード</span><br>
+                  <span class="AccountInformation__label--caption">※変更する場合のみ</span>
+                </label>
+                <div class="AccountInformation__input-wrapper">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:"AccountInformation__input" ,placeholder:"変更後パスワードを入力"%>
+                </div>
+              </div>
+
+              <div class="mb-4 AccountInformation__input-group">
+                <label class="AccountInformation__label" for="current_password">現在のパスワード</label>
+                <div class="AccountInformation__input-wrapper">
+                  <%= f.password_field :current_password, autocomplete: "current-password" ,class:"AccountInformation__input" ,placeholder:"現在のパスワードを入力"%>
+                </div>
+              </div>
+
+              <div class="actions AccountInformation__buttons">
+                <%= link_to "戻る", :back ,class:"btn AccountInformation__button AccountInformation__button--secondary"%>
+                <%= f.submit "更新" ,class:"btn AccountInformation__button AccountInformation__button--primary"%>
+              </div>
+
+            <% end %>
+            <p>アカウントを削除しますか？</p>
+              <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete ,class:"btn AccountInformation__button AccountInformation__button--secondary"%>
+
+
+        </div>
+    </div>
+</section>
+

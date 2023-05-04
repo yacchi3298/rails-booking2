@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
+gem 'rails', '~> 6.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
@@ -54,3 +54,28 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+source 'https://rubygems.org'
+
+gem 'devise'
+
+gem 'devise-i18n'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'rails-i18n'
+gem 'pry-rails'
+
+gem 'sprockets', '~> 4.0'
+gem 'bootstrap', '~> 5.3.0.alpha3'
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
+gem "font-awesome-rails"
+gem 'jquery-rails'
+gem 'jquery-datetimepicker-rails'
+gem 'bootstrap-sass'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'rmagick'
+
+gem 'ransack'

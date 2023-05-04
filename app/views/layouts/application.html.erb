@@ -1,16 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Booking2</title>
+    <title>Booking</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <nav class="navbar navbar-dark" style="background-color:#1c1d3b;">
+        <div class="container-fluid">
+          <a href="/" class="navbar-brand">Booking</a>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <% if user_signed_in? %>
+              <div class="icon">
+                <!-- ↓インスタンス変数でエラー出る。アクション全てでの定義が必要 -->
+                <% if current_user.icon? %>
+                    <%= image_tag current_user.icon.thumb.url , class: "user-icon" %>
+                <% else %>
+                    <%= image_tag("default-icon.png", width: 40) %>
+                <% end %>
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.name %>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                  <li><%= link_to "アカウント", user_path(current_user) ,class: "dropdown-item"%></li>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "dropdown-item"%></li>
+                  <li><%= link_to "施設登録", new_room_path,class: "dropdown-item"%></li>
+                  <li><%= link_to "登録済み施設", own_room_path(current_user),class: "dropdown-item"%></li>
+                  <li><%= link_to "予約一覧", reservations_path,class: "dropdown-item"%></li>
+                </ul>
+              </div>
+            <% else %>
+              <%= link_to "サインアップ", new_user_registration_path, type: "button",class: "btn btn-secondary btn-sm" %>
+              <%= link_to "ログイン", new_user_session_path, type: "button",class: "btn btn-success btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+      <%= yield %>
+
+    <footer>
+      <div class="container-fluid" >
+        <a href="/" class="footer-title">Booking</a>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,73 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.RoomsForm__input-group {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.FormContainer {
+    background-color: #fff;
+    border-radius: 12px;
+    margin: auto;
+    width: 702px;
+}
+
+.RoomsForm__label {
+    color: #333;
+    font-size: 16px;
+    line-height: 26px;
+    width: 33%;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+.Form__label--required:after {
+    content: "*";
+    color: #ff4949;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.RoomsForm__input {
+    width: 66%;
+}
+
+.FormContainer {
+    background-color: #fff;
+    border-radius: 12px;
+    margin: auto;
+    width: 702px;
+}
+
+.RoomsForm__button--submit {
+    background-color: #ff7757;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.RoomsForm__button {
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    height: 58px;
+    font-size: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    height: 45px;
+    line-height: 21px;
+    width: 100%;
+}
+
+.RoomsForm__button--cancel {
+    border: 1px solid #e0e0e0;
+    color: #6a6a6a;
+    line-height: 44px;
+    color: #333;
+}

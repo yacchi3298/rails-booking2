@@ -1,0 +1,55 @@
+<section class="container UserSection">
+    <h2>設定</h2>
+    <div class="UserContainer">
+        <ul class="SideNavigation">
+            <li class="SideNavigation__item "><%= link_to "アカウント", user_path(current_user) %>  </li>
+            <li class="SideNavigation__item active"><%= link_to "プロフィール", profile_user_path(current_user) %> </li>
+        </ul>
+        <div class="AccountInformation">
+            <div class="AccountInformation__header">
+                <h3>プロフィール</h3>
+            </div>
+
+            <%= form_with model: @user do |f| %>
+                <div class="FileUploadArea AccountInformation__input-group">
+                    <%= f.label :プロフィール画像 ,class:"AccountInformation__label"%><br/>
+                    <p class="FileUploadArea__input-group">
+                        <% if @user.icon? %>
+                            <%= image_tag @user.icon.thumb.url, class: "user-icon FileUploadArea__image" %>
+                        <% else %>
+                            <%= image_tag "default-icon.png", alt: "user-icon", size: "100", class: "user-icon" %>
+                        <% end %>
+                        <br>
+                        <div class="icon-upload">
+                            <%= f.file_field :icon %>
+                            <div class="form-check">
+                                <%= f.check_box :remove_icon ,class:"form-check-input",id:"flexCheckDefault"%>
+                                <%= f.label :画像を削除する ,class:"form-check-label" ,for:"flexCheckDefault"%>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+
+                <div class="AccountInformation__input-group">
+                    <%= f.label :ユーザーネーム ,class:"AccountInformation__label" %><br />
+                    <div class="AccountInformation__input-wrapper">
+                        <%= f.text_field :name, autofocus: true, autocomplete: "name" ,class:"AccountInformation__input" ,placeholder:"名前を入力"%>
+                    </div>
+                </div>
+
+                <div class="AccountInformation__input-group">
+                    <%= f.label :自己紹介 ,class:"AccountInformation__label"%><br />
+                    <div class="AccountInformation__input-wrapper">
+                        <%= f.text_area :profile, autofocus: true, autocomplete: "profile" ,class:"AccountInformation__input" ,placeholder:"自己紹介を入力"%>
+                    </div>
+                </div>
+
+                <div class="actions AccountInformation__buttons">
+                    <%= link_to "戻る", :back ,class:"btn AccountInformation__button AccountInformation__button--secondary"%>
+                    <%= f.submit "更新" ,class:"btn AccountInformation__button AccountInformation__button--primary"%>
+                </div>
+            <% end %>
+
+        </div>
+    </div>
+</section>

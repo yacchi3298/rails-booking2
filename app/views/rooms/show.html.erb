@@ -1,0 +1,83 @@
+<div class="SearchRoomsFormContainer">
+    <%= search_form_for(@q, html: {class:"SearchRoomsForm"} )do |f| %>
+        <div class="SearchRoomsForm__input-group SearchRoomsForm__input-group--area">
+            <%= f.search_field :address_cont , placeholder: 'エリア名' , class:"form-control SearchRoomsForm__input"%>
+        </div>
+
+        <div class="SearchRoomsForm__input-group SearchRoomsForm__input-group--keyword">
+            <%= f.search_field :introduction_or_name_cont , placeholder: 'キーワード名を入力' , class:"form-control SearchRoomsForm__input"%>
+        </div>
+
+        <%= f.submit:検索 ,class:"SearchRoomsForm__button" %>
+    <% end %>
+</div>
+
+<div class="container RoomDetailsContainer">
+
+    <%= flash[:danger] %>
+    <%= render "shared/validate", obj: @reservation %>
+
+    <div class="RoomDetailsHeader">
+        <%= link_to "戻る", 'javascript:history.back()' ,class:" AccountInformation__button  RoomDetailsHeader__link"%>
+
+        <% if user_signed_in? %>
+            <% if @room.user_id === current_user.id %>
+                <%= link_to "編集",edit_room_path,class: "AccountInformation__link RoomDetailsHeader__link" %>
+            <%end%>
+        <%end%>
+    </div>
+
+    <div class="RoomDetails">
+        <%= image_tag @room.image.url ,class:"RoomDetails__image"%>
+
+        <div class="RoomDetailsBody">
+
+            <div class="RoomDetailsBody__name-and-price">
+                <p class="RoomDetails__name"><%= @room.name %></p>
+                <p class="RoomDetails__price">¥<%= @room.priice %></p>
+            </div>
+
+            <p class="RoomDetails__address"><%= @room.address %></p>
+            <p class="RoomDetails__content"><%= @room.introduction %></p>
+
+            <div class="ReservationForm">
+                <%= form_with model:@reservation, url:confirm_reservation_path , local: true do |f| %>
+
+                    <%= f.hidden_field :room_id, value: @room.id %>
+
+                    <div class="ReservationForm__input-container">
+                        <div class="ReservationForm__input-group">
+                            <%= f.label :checkin, "チェックイン" %>
+
+                            <div class="ReservationForm__input ReservationForm__input--date">
+                                <%= f.date_field :checkin , min: Time.zone.now,class:"form-control js-picker" ,placeholder:"---- / -- / --" %>
+                            </div>
+                        </div>
+
+                        <div class="ReservationForm__input-group">
+                            <%= f.label :checkout, "チェックアウト" %>
+                                <div class="ReservationForm__input ReservationForm__input--date">
+                                    <%= f.date_field :checkout  ,min: Time.zone.now, class:"form-control js-picker" ,placeholder:"---- / -- / --" %>
+                                </div>
+                        </div>
+
+                        <div class="ReservationForm__input-group ReservationForm__input-group--person-count">
+                            <%= f.label :Number_of_people, "人数" %>
+                            <%= f.number_field :Number_of_people,class:"form-control ReservationForm__input ReservationForm__input--person-count", placeholder:"0"%>
+                            <span>人</span>
+                        </div>
+
+                    </div>
+
+                    <% if user_signed_in? %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <%= f.submit:予約する ,class:"btn ReservationForm__button" %>
+                    <% else %>
+                        <%= link_to "ログイン", new_user_session_path, type: "button",class:"btn ReservationForm__button" %>
+                    <%end%>
+
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="SearchRoomsFormContainer">
+    <%= search_form_for(@q, html: {class:"SearchRoomsForm"} )do |f| %>
+        <div class="SearchRoomsForm__input-group SearchRoomsForm__input-group--area">
+            <%= f.search_field :address_cont , placeholder: 'エリア名' , class:"form-control SearchRoomsForm__input"%>
+        </div>
+
+        <div class="SearchRoomsForm__input-group SearchRoomsForm__input-group--keyword">
+            <%= f.search_field :introduction_or_name_cont , placeholder: 'キーワード名を入力' , class:"form-control SearchRoomsForm__input"%>
+        </div>
+
+        <%= f.submit:検索 ,class:"SearchRoomsForm__button" %>
+    <% end %>
+</div>
+
+<div class="container RoomsContainer">
+    <p class="RoomsContainer__result"><%= "#{@rooms.count}件が見つかりました。" %></p>
+
+    <ul class="RoomList ">
+        <% @rooms.each do |room| %>
+            <li class="Room">
+                <%= image_tag room.image.url ,class:"Room__image"%>
+                <div class="RoomBodyWrapper">
+                    <p class="Room__name"><%= room.name %></p>
+
+                    <p class="Room__address"><%= room.address %></p>
+
+                    <p class="Room__content"><%= room.introduction %></p>
+
+                    <div class="RoomFooter">
+                        <p class="Room__price">¥<%= room.priice %>~</p>
+                        <%=link_to "詳細はこちら", room_path(room.id) ,class:"Room__link"%>
+                    </div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+
+

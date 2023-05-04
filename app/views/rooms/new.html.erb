@@ -1,0 +1,47 @@
+<div class="main-container">
+    <section class="FormContainer">
+        <h2>施設登録</h2>
+
+        <%= render "shared/validate", obj: @room %>
+
+        <%= form_with model: @room do |f| %>
+            <div class="RoomsForm__input-group">
+                <%= f.label :name ,"施設名" ,class:"form-label RoomsForm__label Form__label--required"%>
+                <div class="RoomsForm__input">
+                    <%= f.text_field :name ,class:"form-control" ,id:"name" ,placeholder:"ルーム名を入力"%>
+                </div>
+            </div>
+
+            <div class="RoomsForm__input-group">
+                <%= f.label :introduction ,"施設詳細" ,class:"form-label RoomsForm__label Form__label--required"%>
+                <div class="RoomsForm__input">
+                    <%= f.text_area :introduction , class:"form-control" ,id:"introduction",rows:"5" , placeholder:"施設詳細を入力"%>
+                </div>
+            </div>
+
+            <div class="RoomsForm__input-group">
+                <%= f.label :priice ,"料金" ,class:"form-label RoomsForm__label Form__label--required"%>
+                <div class="RoomsForm__input">
+                    <%= f.number_field :priice , class:"form-control" ,id:"priice",placeholder:"一日あたりの料金を入力"%>
+                </div>
+            </div>
+
+            <div class="RoomsForm__input-group">
+                <%= f.label :address ,"住所" ,class:"form-label RoomsForm__label Form__label--required"%>
+                <div class="RoomsForm__input">
+                    <%= f.text_field :address ,class:"form-control" ,id:"address" ,placeholder:"住所を入力"%>
+                </div>
+            </div>
+
+            <div class="RoomsForm__input-group FileUploadArea">
+                <%= f.label :image ,"施設写真" ,class:"RoomsForm__label"%>
+                <div class=" RoomsForm__input FileUploadArea__input-group">
+                    <%= f.file_field :image ,class:"form-control" ,id:"image" %>
+                </div>
+            </div>
+
+            <%= f.submit "保存" ,class:"btn RoomsForm__button RoomsForm__button--submit"%>
+        <% end %>
+        <%= link_to "戻る", :back ,class:"btn RoomsForm__button RoomsForm__button--cancel"%>
+    </section>
+</div>
