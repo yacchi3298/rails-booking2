@@ -8,12 +8,13 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
+    #binding.pry
     @reservation = Reservation.new(reservation_params)  #新しいreservationインスタンスにformからのパラメーターを入れる
     @room = Room.find(params[:reservation][:room_id])   #roomの情報をroom_idを使って得る
     if @reservation.invalid?
       flash[:danger] = @reservation.errors.full_messages
-			redirect_to room_path(@room.id)
-		else
+      redirect_to room_path(@room.id)
+    else
       @user_id = current_user.id
       @days = (@reservation.checkout.to_date-@reservation.checkin.to_date).to_i    #日数
       @price = @days * @room.priice * @reservation.Number_of_people    #価格
