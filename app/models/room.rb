@@ -7,6 +7,7 @@ class Room < ApplicationRecord
 
     validates :name,:introduction,:priice,:address, presence: true
     validates :priice, numericality: true
+    validates :priice, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
     def self.ransackable_attributes(auth_object = nil)
         ["address", "name","introduction"]
