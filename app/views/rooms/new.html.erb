@@ -4,7 +4,7 @@
 
         <%= render "shared/validate", obj: @room %>
 
-        <%= form_with model: @room do |f| %>
+        <%= form_with model: @room , local: true do |f| %>
             <div class="RoomsForm__input-group">
                 <%= f.label :name ,"施設名" ,class:"form-label RoomsForm__label Form__label--required"%>
                 <div class="RoomsForm__input">

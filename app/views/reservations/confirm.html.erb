@@ -1,8 +1,9 @@
+
 <div class="FormWrapper">
     <section class="FormContainer">
         <h2>予約内容の確認</h2>
 
-        <%= form_with model:@reservation ,method: :post, html: {class:"Form ReservationConfirm"} do |f| %>
+        <%= form_with model:@reservation ,method: :post, html: {class:"Form ReservationConfirm"} , local: true do |f| %>
             <%= f.hidden_field :user_id , value: @user_id%>
             <%= f.hidden_field :room_id , value: @reservation.room_id%>
             <%= f.hidden_field :checkin ,value: @reservation.checkin%>

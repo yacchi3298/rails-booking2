@@ -1,5 +1,5 @@
 <div class="SearchRoomsFormContainer">
-    <%= search_form_for(@q, html: {class:"SearchRoomsForm"} )do |f| %>
+    <%= search_form_for(@q, html: {class:"SearchRoomsForm"} ) do |f| %>
         <div class="SearchRoomsForm__input-group SearchRoomsForm__input-group--area">
             <%= f.search_field :address_cont , placeholder: 'エリア名' , class:"form-control SearchRoomsForm__input"%>
         </div>
