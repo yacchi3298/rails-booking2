@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to :profile_user
     else
       flash.now[:alert] = "登録に失敗しました"
-      render :edit , status: :unprocessable_entity
+      render :profile_edit , status: :unprocessable_entity
     end
   end
 
